@@ -15,16 +15,32 @@
             <th scope="col">description</th>
             <th scope="col">situation</th>
             <th scope="col">views</th>
+            <th scope="col">id</th>
           </tr>
         </thead>
         <tbody>
             {% for course in courses_list%}
             <tr>
                 <th scope="row">{{forloop.counter}}</th>
-                <td>{{course.title}}</td>
+                <td><a href="/course/detail/{{course.id}}">{{course.title}}</a></td>
                 <td>{{course.description}}</td>
-                <td>{{course.situation}}</td>
-                <td>{{course.views}}</td>
+                <td>
+                  {% if course.situation == True %}
+                  <span class="badge bg-success">{{course.situation}}</span>
+                  {% else %}
+                  <span class="badge bg-danger">{{course.situation}}</span>
+                  {% endif %}
+                </td>
+                <td>
+                  {% if course.views >= 1000 %}
+                  <span class="badge bg-success">{{ course.views }}</span>
+                  {% elif course.views >= 10 %}
+                  <span class="badge bg-warning">{{ course.views }}</span>
+                  {% else %}
+                  <span class="badge bg-danger">{{ course.views }}</span>
+                  {% endif %}
+                </td>
+                <td>{{course.id}}</td>
               </tr>
             {% endfor %}
         </tbody>
