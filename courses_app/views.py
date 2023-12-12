@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Course
 
 def courses_list(request):
@@ -18,3 +18,16 @@ def course_detail(request, id):
     course.save()
     return render(request, "courses_app/course_detail.html", context={'course' : course })
     
+
+def add_course(request):
+    t = request.GET.get('title')
+    d = request.GET.get('description')
+
+    if t and d:
+        Course.objects.create(title=t, description=d)
+        return redirect('/course/list')
+
+    
+
+
+    return render(request, 'courses_app/add_course.html')

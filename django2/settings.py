@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     # my apps 
     'home_app',
     'accounts_app',
-     'courses_app'
+    'courses_app',
+    'tickets_app'
 
 ]
 
